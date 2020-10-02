@@ -14,7 +14,7 @@ namespace Xamarin.Forms.Controls.Issues
 #endif
 	[Preserve(AllMembers = true)]
 	[Issue(IssueTracker.Github, 11703, "Android textAllCaps no longer works", PlatformAffected.Android)]
-	public class Issue11703 : TestContentPage // or TestMasterDetailPage, etc ...
+	public class Issue11703 : TestContentPage
 	{
 		const string PageTitle = "Issue11703";
 
