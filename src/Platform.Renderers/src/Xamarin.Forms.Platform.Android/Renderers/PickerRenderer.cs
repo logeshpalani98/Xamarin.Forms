@@ -9,6 +9,7 @@ using Android.Text.Style;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using Xamarin.Platform;
 using AColor = Android.Graphics.Color;
 using Orientation = Android.Widget.Orientation;
 
@@ -16,9 +17,14 @@ namespace Xamarin.Forms.Platform.Android
 {
 	public class PickerRenderer : ViewRenderer<Picker, EditText>, IPickerRenderer
 	{
+		[PortHandler]
 		AlertDialog _dialog;
+
 		bool _isDisposed;
+
+		[PortHandler]
 		TextColorSwitcher _textColorSwitcher;
+
 		int _originalHintTextColor;
 		EntryAccessibilityDelegate _pickerAccessibilityDelegate;
 
@@ -50,6 +56,7 @@ namespace Xamarin.Forms.Platform.Android
 			base.Dispose(disposing);
 		}
 
+		[PortHandler]
 		protected override EditText CreateNativeControl()
 		{
 			return new PickerEditText(Context);
@@ -124,6 +131,7 @@ namespace Xamarin.Forms.Platform.Android
 			}
 		}
 
+		[PortHandler]
 		void IPickerRenderer.OnClick()
 		{
 			Picker model = Element;
@@ -191,11 +199,13 @@ namespace Xamarin.Forms.Platform.Android
 			_dialog.Show();
 		}
 
+		[PortHandler]
 		void RowsCollectionChanged(object sender, EventArgs e)
 		{
 			UpdatePicker();
 		}
 
+		[PortHandler]
 		void UpdateCharacterSpacing()
 		{
 			if (Forms.IsLollipopOrNewer)
@@ -204,12 +214,14 @@ namespace Xamarin.Forms.Platform.Android
 			}
 		}
 
+		[PortHandler]
 		void UpdateFont()
 		{
 			Control.Typeface = Element.ToTypeface();
 			Control.SetTextSize(ComplexUnitType.Sp, (float)Element.FontSize);
 		}
 
+		[PortHandler]
 		void UpdatePicker()
 		{
 			Control.Hint = Element.Title;
@@ -232,11 +244,13 @@ namespace Xamarin.Forms.Platform.Android
 			_pickerAccessibilityDelegate.ValueText = Control.Text;
 		}
 
+		[PortHandler]
 		void UpdateTextColor()
 		{
 			_textColorSwitcher?.UpdateTextColor(Control, Element.TextColor);
 		}
 
+		[PortHandler]
 		void UpdateGravity()
 		{
 			Control.Gravity = Element.HorizontalTextAlignment.ToHorizontalGravityFlags() | Element.VerticalTextAlignment.ToVerticalGravityFlags();

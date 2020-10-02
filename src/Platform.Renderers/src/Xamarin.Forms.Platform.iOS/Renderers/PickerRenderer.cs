@@ -7,6 +7,7 @@ using Foundation;
 using ObjCRuntime;
 using UIKit;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
+using Xamarin.Platform;
 using RectangleF = CoreGraphics.CGRect;
 
 namespace Xamarin.Forms.Platform.iOS
@@ -195,6 +196,7 @@ namespace Xamarin.Forms.Platform.iOS
 				UpdateAttributedPlaceholder(placeHolder);
 		}
 
+		[PortHandler]
         protected internal virtual void UpdateFont()
 		{
 			Control.Font = Element.ToUIFont();			
@@ -228,6 +230,7 @@ namespace Xamarin.Forms.Platform.iOS
 		protected virtual void UpdateAttributedPlaceholder(NSAttributedString nsAttributedString) => 
 			Control.AttributedPlaceholder = nsAttributedString;
 
+		[PortHandler]
 		void UpdatePicker()
 		{
 			var selectedIndex = Element.SelectedIndex;
@@ -271,15 +274,19 @@ namespace Xamarin.Forms.Platform.iOS
 			_picker.Select(Math.Max(formsIndex, 0), 0, true);
 		}
 
+		[PortHandler]
 		void UpdateHorizontalTextAlignment()
 		{
 			Control.TextAlignment = Element.HorizontalTextAlignment.ToNativeTextAlignment(((IVisualElementController)Element).EffectiveFlowDirection);
 		}
+
+		[PortHandler]
 		void UpdateVerticalTextAlignment()
 		{
 			Control.VerticalAlignment = Element.VerticalTextAlignment.ToNativeTextAlignment();			
 		}
 
+		[PortHandler]
 		protected internal virtual void UpdateTextColor()
 		{
 			var textColor = Element.TextColor;
@@ -291,8 +298,9 @@ namespace Xamarin.Forms.Platform.iOS
 
 			// HACK This forces the color to update; there's probably a more elegant way to make this happen
 			Control.Text = Control.Text;			
-		}		
+		}
 
+		[PortHandler]
 		protected override void Dispose(bool disposing)
 		{
 			if (_disposed)
@@ -331,6 +339,7 @@ namespace Xamarin.Forms.Platform.iOS
 			base.Dispose(disposing);
 		}
 
+		[PortHandler]
 		class PickerSource : UIPickerViewModel
 		{
 			PickerRendererBase<TControl> _renderer;

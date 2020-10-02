@@ -2,11 +2,10 @@ using System;
 using System.ComponentModel;
 using Android.App;
 using Android.Content;
-using Android.OS;
 using Android.Text.Format;
 using Android.Util;
 using Android.Widget;
-using AColor = Android.Graphics.Color;
+using Xamarin.Platform;
 using ATimePicker = Android.Widget.TimePicker;
 
 namespace Xamarin.Forms.Platform.Android

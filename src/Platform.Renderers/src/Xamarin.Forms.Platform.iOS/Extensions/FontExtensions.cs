@@ -3,18 +3,22 @@ using System.Linq;
 using Xamarin.Forms.Internals;
 using UIKit;
 using System;
-using Xamarin.Forms.Core;
+using Xamarin.Platform;
 
 namespace Xamarin.Forms.Platform.iOS
 {
 	public static partial class FontExtensions
 	{
+		[PortHandler]
 		static readonly string _defaultFontName = UIFont.SystemFontOfSize(12).Name;
 
+		[PortHandler]
 		public static UIFont ToUIFont(this Font self) => ToNativeFont(self);
 
+		[PortHandler]
 		internal static UIFont ToUIFont(this IFontElement element) => ToNativeFont(element);
 
+		[PortHandler]
 		static UIFont _ToNativeFont(string family, float size, FontAttributes attributes)
 		{
 			var bold = (attributes & FontAttributes.Bold) != 0;
@@ -87,6 +91,7 @@ namespace Xamarin.Forms.Platform.iOS
 			return UIFont.SystemFontOfSize(size);
 		}
 
+		[PortHandler]
 		internal static string CleanseFontName(string fontName)
 		{
 
